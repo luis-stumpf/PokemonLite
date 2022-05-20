@@ -25,6 +25,11 @@ class AttackSpec extends AnyWordSpec {
       attack2.damage should be(10)
       attack3.damage should be(50)
     }
+    "have a attack value" in{
+      attack1.name should be("Tackle")
+      attack2.name should be("Slam")
+      attack3.name should be("Flash")
+    }
   }
 
 }
