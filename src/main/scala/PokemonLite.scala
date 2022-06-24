@@ -25,11 +25,12 @@ object PokemonLite {
     guiTread.start()
 
 
-    val tui = TUI( controller )
+    /*val tui = TUI( controller )
     var input = ""
     while ( input != "quit" )
       input = readLine()
       Platform.runLater( tui.processInputLine( input ) )
+    */
   }
 }
 

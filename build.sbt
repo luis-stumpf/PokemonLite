@@ -2,8 +2,14 @@ ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "3.1.1"
 
-Compile/mainClass := Some("de.htwg.se.pokelite.PokemonLite")
-mainClass in (Compile, packageBin) := Some("de.htwg.se.pokelite.PokemonLite")
+version := "1.0"
+
+name := "pokemonlite"
+
+mainClass := Some("de.htwg.se.pokelite.PokemonLite")
+
+//Compile/mainClass := Some("de.htwg.se.pokelite.PokemonLite")
+//mainClass / (Compile, packageBin) := Some("de.htwg.se.pokelite.PokemonLite")
 
 lazy val root = (project in file("."))
   .settings(
@@ -22,6 +28,7 @@ libraryDependencies += ( "net.codingwell" %% "scala-guice" % "5.0.2" ).cross( Cr
 
 libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.8.2").cross( CrossVersion.for3Use2_13 )
 libraryDependencies += ("org.scala-lang.modules" %% "scala-xml" % "2.0.1")
+
 
 libraryDependencies ++= {
   // Determine OS version of JavaFX binaries
