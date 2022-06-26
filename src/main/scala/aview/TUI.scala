@@ -16,14 +16,14 @@ class TUI( controller : ControllerInterface ) extends Observer :
   controller.add( this )
 
   def processInputLine( input : String ) : Unit = {
-    if input.isEmpty then
-      update( "Error: No input detected." )
-    else if input.charAt( 0 ) == 'y' then controller.undoMove()
-    else if input.charAt( 0 ) == 'z' then controller.redoMove()
-    else if input == "save" then controller.save
-    else if input == "load" then controller.load
-    else
-      controller.game.state match
+
+    input match
+      case "" => update( "Error: No input detected." )
+      case "y" => controller.undoMove()
+      case "z" => controller.redoMove()
+      case "save" => controller.save
+      case "load" => controller.load
+      case _ => controller.game.state match
         case InitState() => controller.initPlayers()
         case InitPlayerState() => controller.addPlayer( input )
         case InitPlayerPokemonState() => controller.addPokemons( input )
@@ -31,6 +31,7 @@ class TUI( controller : ControllerInterface ) extends Observer :
         case FightingState() => controller.attackWith( input )
         case SwitchPokemonState() => controller.selectPokemon( input )
         case GameOverState() => controller.restartTheGame()
+
   }
 
   override def update(message: String) : Unit = {
