@@ -26,6 +26,7 @@ object PokemonLite {
 
 
     val tui = TUI( controller )
+    tui.update("success")
     var input = ""
     while ( input != "quit" )
       input = readLine()
