@@ -57,6 +57,7 @@ case class Pokemon( pType : PokemonType, hp : Int, isDead : Boolean = false ) {
       "pType" -> Json.toJson( pType.name ),
       "hp" -> Json.toJson( hp ),
       "isDead" -> Json.toJson( isDead ),
+      "maxHp" -> Json.toJson(pType.hp),
     )
 
   def increaseHP( amount : Double ) : Pokemon =
@@ -83,6 +84,14 @@ case class Pokemon( pType : PokemonType, hp : Int, isDead : Boolean = false ) {
 
 enum PokemonType( val name : String, val hp : Int, val attacks : List[ AttackType ], val pokemonArt : PokemonArt ) {
   override def toString : String = name + " HP: " + hp
+
+  def toJson: JsValue =
+    Json.obj(
+      "name" -> Json.toJson(name),
+      "hp" -> Json.toJson(hp),
+      "attacks" -> Json.toJson( attacks.map( e => e.toJson ) ),
+      "pokemonArt" -> Json.toJson(pokemonArt.toString),
+    )
 
   case Glurak extends PokemonType(
     name = "Glurak",
